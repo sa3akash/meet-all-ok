@@ -37,7 +37,6 @@ const SingleParticipant = (props) => {
   
     const dispatch = useDispatch()
 
-
     const handleOpenActiveChatbox = () => {
       if (participant.socketId !== socketId) {
         dispatch(setActiveConversation(participant))

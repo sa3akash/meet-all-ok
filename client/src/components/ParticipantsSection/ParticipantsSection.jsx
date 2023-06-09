@@ -1,12 +1,18 @@
 import React from 'react'
 import Participants from './Participants';
+import DirectChat from './direactChat/DirectChat';
+import { useSelector } from 'react-redux';
 
 const ParticipantsSection = () => {
+
+
+  const {activeConversation} = useSelector(state=>state.room)
+
   return (
     <div className="participants_section_container">
     <ParticipantsLabel />
     <Participants />
-    {/* <DirectChat /> */}
+    {activeConversation && <DirectChat />}
   </div>
   )
 }

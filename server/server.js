@@ -166,7 +166,7 @@ const directMessageHandler = (data, socket) => {
       authorSocketId: socket.id,
       messageContent: data.messageContent,
       isAuthor: false,
-      identity: data.identity,
+      username: data.username,
     };
     socket.to(data.receiverSocketId).emit("direct-message", receiverData);
 
@@ -174,7 +174,7 @@ const directMessageHandler = (data, socket) => {
       receiverSocketId: data.receiverSocketId,
       messageContent: data.messageContent,
       isAuthor: true,
-      identity: data.identity,
+      username: data.username,
     };
 
     socket.emit("direct-message", authorData);

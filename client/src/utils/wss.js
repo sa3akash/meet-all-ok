@@ -2,6 +2,7 @@ import io from "socket.io-client";
 import { store } from "../store";
 import { setParticipants, setRoomId, setSocketId } from "../store/reducers/roomReducer";
 import * as webRTCHandler from "./webrtcHandler";
+import { appendNewMessageToChatHistory } from "./directMessage";
 
 const SERVER = "http://localhost:5000";
 
@@ -50,6 +51,10 @@ export const connectWithSocketIOServer = () => {
     webRTCHandler.removePeerConnection(data);
   });
 
+  socket.on("direct-message", (data) => {
+    appendNewMessageToChatHistory(data);
+  });
+
 
 };
 
@@ -80,7 +85,9 @@ export const signalPeerData = (data) => {
 };
 
 
-
+export const sendDirectMessage = (data) => {
+  socket.emit("direct-message", data);
+};
 
 
 
